@@ -11,7 +11,7 @@ var path = require('path');
 var argv = minimist(process.argv.slice(2));
 const opts = {
     width: defined(argv.w, argv.width, process.stdout.isTTY ? process.stdout.columns - 5 : 0),
-    stack: defined(argv.stack, true)
+    stack: defined(argv.stack, process.env.SHOW_STACK ? process.env.SHOW_STACK === "true" : true)
 };
 var tap = faucet(opts);
 process.on('exit', function (code) {
